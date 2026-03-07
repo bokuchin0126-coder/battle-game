@@ -310,6 +310,10 @@ function nextPhase(state) {
     }
 }
 
+function wait(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms))
+}
+
 function textChange() {
     enmHP.textContent = state.players[1].hp;
     dft.textContent = state.defeatCount;
@@ -328,20 +332,22 @@ function textChange() {
     }
 }
 
-function setState(newState) {
+async function setState(newState) {
     state = newState;
     renderLog(state.logs);
     textChange();
 
-    if (state.phase === "enemy") {
-        setTimeout(() => {
-            setState(nextPhase(state));
-        }, 500);
-    }
+    await wait(500)
+    enemyTurn();
 }
 
 function playerTurn() {
     if (state.phase !== "player") return;
+    setState(nextPhase(state));
+}
+
+function enemyTurn() {
+    if (state.phase !== "enemy") return ;
     setState(nextPhase(state));
 }
 
