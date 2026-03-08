@@ -9,7 +9,16 @@
 </head>
 <body>
     <P><span id="player">プレイヤー</span></P>
-    <p>残りのHP<span id="playerHP">300</span></p>
+    <div id="gameOverText"></div>
+    <div class="hp-box">
+
+        <div id="playerDamageLayer"></div>
+
+        <div class="hp-bar-bg">
+            <div id="playerHpBar" class="hp-bar"></div>
+            <span id="playerHpText"></span>
+        </div>
+    </div>
     <P>経験値<span id="experience">0</span></P>
     <p>レベル<span id="level">0</span></p>
     <button id="attack">攻撃！</button>
@@ -17,8 +26,17 @@
     <button id="item">アイテム</button>
     <p id="Portion">Portion</p>
     <p><span id="defeat">0</span>対撃破</p>
-    <p >敵 : <span id="enemy">ノーマル</span></p>
-    <P >残りのHP<span id="enemyHP">80</span></P>
+    <p >敵 : <span id="enemy"></span></p>
+    <img id="enemyImage" width="120">
+    <div id="enemyBox" class="hp-box">
+         
+        <div id="enemyDamageLayer"></div>
+
+        <div class="hp-bar-bg">
+            <div id="enemyHpBar" class="hp-bar"></div>
+            <span id="enemyHpText"></span>
+        </div>
+    </div>
     <div id="log"></div>
 </body>
 </html>
