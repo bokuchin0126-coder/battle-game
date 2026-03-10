@@ -52,6 +52,22 @@ async function getPokemon() {
 async function attackShock(state, attackerId, targetId, damage) {
     const attaker = state.players.find(p => p.id === attackerId);
     const target = state.players.find(p => p.id === targetId);
+    const criticalDamage = damage * 2;
+
+    const ifState  = {
+        ...state,
+        players: state.players.map(p => {
+            if (targetId === p.id) {
+                return {
+                    ...p,
+                    hp: Math.max(0, p.hp - criticalDamage)
+                };
+            }
+            return p;
+        })
+    };
+    if (Math.random() < 0.2) return await addLog(ifState, `${attaker.name}の攻撃!${target.name}に${criticalDamage}ダメージ!`)
+
     const newStates = {
         ...state,
         players: state.players.map(p => {
